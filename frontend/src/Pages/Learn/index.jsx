@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../Components/Header'
-import style from './Learn.scss'
+import style from './learn.scss'
+import Cards from '../../Components/Cards'
 
 const Learn = () => {
+
+
   return (
-    <Header>aloooooo</Header>
+    <div className='learnContainer'>
+      <Header />
+      <Cards />
+    </div>
   )
 }
 
