@@ -1,10 +1,9 @@
 import React from 'react'
-import './assessment.scss'
-import Header from '../../Components/Header'
+import styles from './Assessment.module.scss'
 
 const Asssessment = () => {
   return (
-    <Header/>
+    <div className={styles.assessmentContainer}></div>
   )
 }
 
