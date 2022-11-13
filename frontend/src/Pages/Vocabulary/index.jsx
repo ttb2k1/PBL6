@@ -1,13 +1,11 @@
 import React from 'react'
-import Header from '../../Components/Header'
-import Search from '../../Components/Search';
-import './search.scss'
+import styles from './Vocabulary.module.scss'
+// import Search from '../../Components/Search';
 
 const Vocabulary = () => {
   return (
-    <div className='vocabContainer'>
-      <Header />
-      <Search />
+    <div>
+      <div className={styles.vocabContainer}></div>
     </div>
   )
 }

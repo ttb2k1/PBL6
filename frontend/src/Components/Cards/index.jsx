@@ -1,5 +1,5 @@
 import React from 'react'
-import './card.scss'
+import styles from './Card.module.scss'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -25,7 +25,7 @@ const Cards = () => {
           {'"a benevolent smile"'}
         </Typography>
       </CardContent>
-      <CardActions className='detail'>
+      <CardActions className={styles.detail}>
         <Button size="small">Chi tiết</Button>
       </CardActions>
     </Card>

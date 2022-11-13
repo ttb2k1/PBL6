@@ -4,13 +4,16 @@ import Learn from './Pages/Learn'
 import Lesson from './Pages/Lesson'
 import Asssessment from './Pages/Assessment';
 import Vocabulary from './Pages/Vocabulary';
+import Header from './Components/Header';
 
 const App = () => {
   return (
     <Router>
+      <Header />
       <Routes>
+        <Route path="/" element={<Learn />} />
         <Route path="/learn" element={<Learn />} />
-        <Route path="/search" element={<Vocabulary />} />
+        <Route path="/vocabulary" element={<Vocabulary />} />
         <Route path='/assessment' element={<Asssessment />} />
         <Route path='/lesson' element={<Lesson />} />
       </Routes>
