@@ -16,7 +16,23 @@
 
   .content {
     padding: 25px 0px;
-    width: 100%;
+    width: 80%;
     background-color: #f1f1f1;
+
+    .title {
+      display: flex;
+      margin-bottom: 30px;
+
+      .titleContent {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+
+        .titleButton {
+          border-radius: 0;
+          background-color: white;
+        }
+      }
+    }
   }
 }
