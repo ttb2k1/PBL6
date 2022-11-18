@@ -6,18 +6,15 @@
 
 .lessonContainer {
   background-color: #f1f1f1;
-  position: relative;
-  width: 100%;
-  margin: auto;
   padding-top: 90px;
   height: 100vh;
   display: flex;
   justify-content: center;
 
-  .content {
-    padding: 25px 0px;
-    width: 80%;
+  .contentContainer {
+    width: 70%;
     background-color: #f1f1f1;
+    height: 90%;
 
     .title {
       display: flex;
@@ -32,6 +29,25 @@
           border-radius: 0;
           background-color: white;
         }
+      }
+    }
+
+    .detail {
+      height: 90%;
+
+      .vocabContainer {
+        height: 100%;
+        padding-right: 15px;
+
+        .vocabContent {
+          height: 100%;
+          padding: 15px;
+        }
+      }
+
+      .canvas {
+        height: 350px;
+        padding: 15px;
       }
     }
   }

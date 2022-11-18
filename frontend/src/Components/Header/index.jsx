@@ -14,7 +14,7 @@ export const Header = () => {
     return (
         <AppBar position="fixed" className={styles.headerContainer}>
             <Container >
-                <Toolbar Toolbar disableGutters className={styles.contentContainer} >
+                <Toolbar disableGutters className={styles.contentContainer} >
                     <div className={styles.content}>
                         <Box className={styles.itemNav} >
                             <Button
