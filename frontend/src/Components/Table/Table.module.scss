@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.Container {
+  ul {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    text-align: center;
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+      
+      .name{
+        font-size: 30px;
+        color: #3367d6;
+      }
+
+      .subname{
+        font-size: 12px;
+      }
+    }
+  }
+}
