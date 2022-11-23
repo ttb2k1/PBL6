@@ -43,8 +43,6 @@ const Search = () => {
                         inputProps={{ "aria-label": "search" }}
                     />
                 </Search>
-
-                {/* <Box sx={{ display: { xs: "flex", md: "none" } }}></Box> */}
             </Toolbar>
         </AppBar>
     )

@@ -9,13 +9,38 @@
 }
 
 .headerContainer {
+  margin: auto;
+
   .contentContainer {
-    justify-content: center;
+    justify-content: space-between;
+    width: 90%;
+    display: flex;
+    margin: auto;
+
+    .logo {
+      width: 20%;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+
+      .link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+
+        .title {
+          font-size: 20px;
+          font-weight: bold;
+          color: black;
+        }
+      }
+    }
     .content {
       width: 60%;
       min-height: 64px;
       display: flex;
       justify-content: center;
+      margin-right: 10%;
 
       .itemNav {
         justify-content: space-around;

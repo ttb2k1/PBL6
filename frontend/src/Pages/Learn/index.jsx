@@ -1,4 +1,5 @@
 import React from 'react'
+import { data } from "./data"
 import styles from "./Learn.module.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
@@ -44,20 +45,32 @@ const Learn = () => {
                     <Typography sx={{ mb: 1 }}>
                       Số nét: 9
                     </Typography>
+                    <Typography sx={{ mb: 1 }}>
+                      Nghĩa: Như chữ nghiên [揅]
+                    </Typography>
                   </Grid>
-                  <Grid item xs={6} >
-                    <Typography sx={{ mb: 1 }}>
-                      well meaning and kindly.
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      well meaning and kindly.
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      well meaning and kindly.
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      well meaning and kindly.
-                    </Typography>
+                  <Grid item xs={6} className={styles.canvas} >
+                    <span className={styles.vocab}>
+                      研
+                    </span>
+                  </Grid>
+                </div>
+                <div className={styles.classify}>
+                  <div className={styles.classifyTitle}>Ví dụ</div>
+                  <Grid item xs={12} >
+                    {data.map((item, index) => (
+                      <Typography key={index} sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                        <Grid item xs={1.5}>
+                          {item.name}:
+                        </Grid>
+                        <Grid item xs={2.5}>
+                          {item.subname}
+                        </Grid>
+                        <Grid item xs={8}>
+                          {item.mean}
+                        </Grid>
+                      </Typography>
+                    ))}
                   </Grid>
                 </div>
               </Paper>

@@ -3,13 +3,18 @@ import styles from "./Table.module.scss"
 import { data } from "./data"
 
 
-const Table = () => {
+const Table = () => {   
+
+    const handleShow = () => {
+        
+    }
+
     return (
         <div className={styles.Container}>
             <ul>
-                {data.map((item,index) => (
+                {data.map((item, index) => (
                     <li key={index}>
-                        <div className={styles.name}>{item.name}</div>
+                        <div onClick={handleShow} className={styles.name}>{item.name}</div>
                         <div className={styles.subname}>{item.subname}</div>
                     </li>
                 ))}

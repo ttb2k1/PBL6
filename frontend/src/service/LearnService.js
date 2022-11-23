@@ -1,9 +1,9 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8080/api/v1/';
+const BASE_URL = '';
 
 class LearnService {
-  getLesson() {
-    return axios.get(API_URL);
+  getVocabByName(name) {
+    return axios.get(BASE_URL + '' + name);
   }
 }
 

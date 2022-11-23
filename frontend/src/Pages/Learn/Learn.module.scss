@@ -63,6 +63,29 @@
             border-right: 2px solid #f1f1f1;
             margin-right: 10px;
           }
+
+          .canvas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .vocab {
+              height: 350px;
+              font-weight: 600px;
+              font-size: 225px;
+            }
+          }
+        }
+
+        .classify {
+          .classifyTitle {
+            font-weight: 500;
+            margin-bottom: 15px;
+          }
+
+          .meanContainer{
+            
+          }
         }
       }
     }

@@ -8,6 +8,8 @@ import Button from '@mui/material/Button';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import StarIcon from '@mui/icons-material/Star';
+import { Link } from "react-router-dom";
+
 
 
 export const Header = () => {
@@ -15,6 +17,14 @@ export const Header = () => {
         <AppBar position="fixed" className={styles.headerContainer}>
             <Container >
                 <Toolbar disableGutters className={styles.contentContainer} >
+                    <div className={styles.logo}>
+                        <Link to="/" className={styles.link}>
+                            <img src="../../Image/jlmc-nihon.jpg" alt="" />
+                            <div className={styles.title}>
+                                KANJI LEARMING
+                            </div>
+                        </Link>
+                    </div>
                     <div className={styles.content}>
                         <Box className={styles.itemNav} >
                             <Button
@@ -40,6 +50,7 @@ export const Header = () => {
                             </Button>
                         </Box>
                     </div>
+                    
                 </Toolbar >
             </Container>
         </AppBar >
