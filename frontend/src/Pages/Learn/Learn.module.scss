@@ -9,7 +9,7 @@
   width: 100%;
   margin: auto;
   padding-top: 90px;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
 
@@ -27,11 +27,13 @@
         0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 
       .iconSearch,
-      .iconClose {
+      .iconClose,
+      .iconEdit {
         padding: 10px;
         display: flex;
 
         &:hover {
+          cursor: pointer;
           background-color: rgba(0, 0, 0, 0.04);
         }
       }
@@ -41,6 +43,7 @@
         margin-left: 8px;
         padding: 4px 0 5px;
         margin: 0;
+        color: #504d4d;
       }
     }
 
@@ -83,8 +86,7 @@
             margin-bottom: 15px;
           }
 
-          .meanContainer{
-            
+          .meanContainer {
           }
         }
       }

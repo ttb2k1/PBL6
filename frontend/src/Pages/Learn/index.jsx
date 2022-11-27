@@ -1,12 +1,36 @@
-import React from 'react'
-import { data } from "./data"
+import React, { useState } from 'react'
 import styles from "./Learn.module.scss"
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Typography, Paper, Grid, InputBase } from '@mui/material';
+import { useEffect } from 'react';
+import LearnService from '../../service/LearnService';
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 
 const Learn = () => {
+  const [data, setData] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+
+
+  useEffect(() => {
+    try {
+      LearnService.getVocabByName('研').then((res) => {
+        setData(res.data)
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, [])
+
+  const handleClear = () => {
+    setSearchTerm('')
+  }
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.event.target)
+  }
+
   return (
     <div className={styles.learnContainer}>
       <div className={styles.content}>
@@ -14,8 +38,11 @@ const Learn = () => {
           <div className={styles.iconSearch} >
             <SearchIcon />
           </div>
-          <InputBase className={styles.inputSearch} placeholder='Tìm kiếm ...' />
-          <div className={styles.iconClose} >
+          <InputBase className={styles.inputSearch} onChange={e => setSearchTerm(e.target.value)} value={searchTerm} placeholder='Tìm kiếm ...' />
+          <div className={styles.iconEdit}>
+            <ModeEditOutlineIcon />
+          </div>
+          <div className={styles.iconClose} onClick={handleClear} >
             <CloseIcon />
           </div>
         </div>
@@ -24,8 +51,8 @@ const Learn = () => {
             <Grid item xs={3}>
               <Paper className={styles.item}>
                 <div className={styles.itemContainer}>
-                  <span>研</span>
-                  <span>NGHIÊN</span>
+                  <span>{data.kanji}</span>
+                  <span>{data.vocabulary}</span>
                 </div>
               </Paper>
             </Grid>
@@ -34,39 +61,39 @@ const Learn = () => {
                 <div className={styles.itemContainer}>
                   <Grid item xs={6} className={styles.detail}>
                     <Typography sx={{ mb: 1 }}>
-                      Bộ: 研 - NGHIÊN
+                      Bộ: {data.kanji} - {data.vocabulary}
                     </Typography>
                     <Typography sx={{ mb: 1 }}>
-                      訓: と.ぐ
+                      訓: {data.kunyomi}
                     </Typography>
                     <Typography sx={{ mb: 1 }}>
-                      音: ケン
+                      音: {data.KEN}
                     </Typography>
                     <Typography sx={{ mb: 1 }}>
-                      Số nét: 9
+                      Nghĩa: {data.mean}
                     </Typography>
                     <Typography sx={{ mb: 1 }}>
-                      Nghĩa: Như chữ nghiên [揅]
+                      Cấp độ: {data.level}
                     </Typography>
                   </Grid>
                   <Grid item xs={6} className={styles.canvas} >
                     <span className={styles.vocab}>
-                      研
+                      {data.kanji}
                     </span>
                   </Grid>
                 </div>
                 <div className={styles.classify}>
                   <div className={styles.classifyTitle}>Ví dụ</div>
                   <Grid item xs={12} >
-                    {data.map((item, index) => (
+                    {data.compounds?.map((item, index) => (
                       <Typography key={index} sx={{ mb: 1, display: 'flex', width: '100%' }}>
-                        <Grid item xs={1.5}>
-                          {item.name}:
+                        <Grid item xs={2}>
+                          {item.compound}:
                         </Grid>
-                        <Grid item xs={2.5}>
-                          {item.subname}
+                        <Grid item xs={3}>
+                          {item.hiragana}
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={7}>
                           {item.mean}
                         </Grid>
                       </Typography>
