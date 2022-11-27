@@ -11,34 +11,37 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 const Learn = () => {
   const [data, setData] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [result, setResult] = useState('')
 
 
   useEffect(() => {
     try {
-      LearnService.getVocabByName('研').then((res) => {
+      LearnService.getVocabByName(`${result}`).then((res) => {
         setData(res.data)
       })
     } catch (error) {
       console.log(error);
     }
-  }, [])
+  }, [result])
 
   const handleClear = () => {
     setSearchTerm('')
   }
 
   const handleSearch = (e) => {
-    setSearchTerm(e.event.target)
+    if(e.type === 'mousedown' || (e.type === 'keydown' && e.key === "Enter")){
+      setResult(searchTerm);
+    }
   }
 
   return (
     <div className={styles.learnContainer}>
       <div className={styles.content}>
         <div className={styles.input}>
-          <div className={styles.iconSearch} >
+          <div className={styles.iconSearch} onClick={handleSearch}  >
             <SearchIcon />
           </div>
-          <InputBase className={styles.inputSearch} onChange={e => setSearchTerm(e.target.value)} value={searchTerm} placeholder='Tìm kiếm ...' />
+          <InputBase className={styles.inputSearch} onKeyDown={handleSearch} onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} placeholder='Tìm kiếm ...' />
           <div className={styles.iconEdit}>
             <ModeEditOutlineIcon />
           </div>
