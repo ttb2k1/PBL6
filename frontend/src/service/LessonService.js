@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://belearnkanji.herokuapp.com/api/v1/';
+const BASE_URL = 'http://52.74.132.234:3000/api/v1/';
 
 class LessonService {
+  getAllLevel(){
+    return axios.get(BASE_URL + 'listlesson')
+  }
+
   getVocabularyById(levelId, vocabId) {
     return axios.get(BASE_URL + '' + levelId, vocabId);
   }
 
-  geByLevel(levelId) {
-    return axios.get(BASE_URL + 'lesson?level=' + levelId);
+  getLessonByLevel(levelId) {
+    return axios.get(BASE_URL + 'lesson/' + levelId);
   }
 
   getDetail(id){

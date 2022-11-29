@@ -13,7 +13,7 @@ const Slide = () => {
   };
   return (
     <div className={styles.slideContainer}>
-      <Arrow className={styles.Arrow} direction="up" onClick={() => handlerClick('up')}>
+      <Arrow  className={styles.Arrow} direction="up" onClick={() => handlerClick('up')}>
         <KeyboardArrowUpOutlinedIcon />
       </Arrow>
       <Arrow direction="down" onClick={() => handlerClick('down')}>

@@ -1,9 +1,9 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8080/api/v1/';
+const BASE_URL = 'http://52.74.132.234:3000/api/v1/';
 
 class Asssessment {
   getLesson() {
-    return axios.get(API_URL);
+    return axios.get(BASE_URL);
   }
 }
 
