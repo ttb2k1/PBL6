@@ -16,7 +16,7 @@ class LessonService {
   }
 
   getDetail(id){
-    return axios.get(BASE_URL + 'detail?kanji=' + id)
+    return axios.get(BASE_URL + 'detail/' + id)
   }
 }
 

@@ -8,20 +8,30 @@ import LessonService from '../../service/LessonService';
 
 const Lesson = () => {
   const [listLesson, setListLesson] = useState([])
-  const [nameLevel, setNameLevel] = useState('N5')
+  const [dataByLevel, setDataByLevel] = useState([])
 
   useEffect(() => {
     try {
       LessonService.getAllLevel().then((res) => {
         setListLesson(res.data.lesson)
       })
+      LessonService.getLessonByLevel('N5').then((res) => {
+        setDataByLevel(res.data.kanjis)
+      })
     } catch (error) {
       console.log(error);
     }
   }, [])
+  console.log(dataByLevel);
 
   const handleChangeLevel = (level) => {
-    setNameLevel(level)
+    try {
+      LessonService.getLessonByLevel(`${level}`).then((res) => {
+        setDataByLevel(res.data.kanjis)
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -37,16 +47,7 @@ const Lesson = () => {
           ))}
         </div>
         <Grid container className={styles.detail}>
-          <Grid item xs={8} className={styles.vocabContainer} >
-            <Paper className={styles.vocabContent} >
-              <Table level={nameLevel} page='1' />
-            </Paper>
-            <Grid xs={6}>
-              <Paper className={styles.pagination}>
-                123
-              </Paper>
-            </Grid>
-          </Grid>
+          <Table level={dataByLevel} />
           <Grid item xs={4}>
             <Paper className={styles.canvas}>
             </Paper>

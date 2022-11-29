@@ -8,13 +8,13 @@ const Pagination = (props) => {
     const [itemOffset, setItemOffset] = useState(0);
     const [pageCount, setPageCount] = useState(0)
     const [currentItems, setCurrentItems] = useState(null)
-    const itemsPerPage = 6
+    const itemsPerPage = 70
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(data.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(data.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage.data])
+    }, [itemOffset, itemsPerPage, data])
     // const endOffset = itemOffset + itemsPerPage;
     // const currentItems = data.slice(itemOffset, endOffset);
     // const pageCount = Math.ceil(data.length / itemsPerPage);

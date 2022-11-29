@@ -4,27 +4,70 @@
   box-sizing: border-box;
 }
 
-.Container {
-  ul {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    text-align: center;
-    
-    li {
-      list-style: none;
-      margin-bottom: 10px;
-      
-      .name{
-        font-size: 30px;
-        color: #3367d6;
+.vocabContainer {
+  height: 100%;
+  padding-right: 15px;
 
-        &:hover{
-          cursor: pointer;
+  .vocabContent {
+    height: 100%;
+    padding: 15px;
+    margin-bottom: 16px;
+
+    .Container {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        text-align: center;
+
+        li {
+          list-style: none;
+          margin-bottom: 10px;
+
+          .name {
+            font-size: 30px;
+            color: #3367d6;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          .subname {
+            font-size: 12px;
+          }
         }
       }
+    }
+  }
 
-      .subname{
-        font-size: 12px;
+  .paginationContainer {
+    display: flex;
+    .content {
+      padding: 14px 5px;
+
+      .pagination {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 13px;
+        gap: 5px;
+
+        .pageNum {
+          padding: 8px 15px;
+          cursor: pointer;
+          border-radius: 3px;
+          font-weight: 400;
+
+          &:hover {
+            background-color: #5997de;
+            color: white;
+          }
+        }
+
+        .active {
+          background-color: #5997de;
+        }
       }
     }
   }
