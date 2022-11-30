@@ -33,13 +33,21 @@
     }
 
     .detail {
-      height: 90%;
-
-      
-
       .canvas {
-        height: 350px;
-        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .vocab {
+          font-weight: 600px;
+          font-size: 225px;
+        }
+
+        .mean {
+          width: 100%;
+          padding: 0 15px;
+        }
       }
     }
   }

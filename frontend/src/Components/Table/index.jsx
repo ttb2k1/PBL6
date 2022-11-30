@@ -3,17 +3,15 @@ import styles from "./Table.module.scss"
 import { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
 import { Paper, Grid } from '@mui/material';
-import LessonService from '../../service/LessonService';
 
 
 
-const Table = ({ level }) => {
+const Table = ({ level, setSelectedKanjiId }) => {
 
     const [itemOffset, setItemOffset] = useState(0);
     const [pageCount, setPageCount] = useState(0)
     const [currentItems, setCurrentItems] = useState(null)
     const itemsPerPage = 70
-    console.log(currentItems, "123ax");
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
@@ -26,19 +24,13 @@ const Table = ({ level }) => {
         setItemOffset(newOffset);
     };
 
-    const handleShow = (id) =>{
-        console.log(id);
-        // try {
-        //     LessonService.getDetail(`${id}`).then((res) => {
-        //         console.log(res.data);
-        //     })
-        // } catch (error) {
-        //     console.log(error);
-        // }
+    const handleShow = (id) => {
+        setSelectedKanjiId(id)
     }
 
     return (
         <Grid item xs={8} className={styles.vocabContainer} >
+
             <Paper className={styles.vocabContent} >
                 <div className={styles.Container}>
                     <ul>
