@@ -7,7 +7,7 @@
 .lessonContainer {
   background-color: #f1f1f1;
   padding-top: 90px;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
 
@@ -20,14 +20,18 @@
       display: flex;
       margin-bottom: 30px;
 
-      .titleContent {
+      .titleContainer {
         display: flex;
-        justify-content: center;
-        background-color: white;
 
-        .titleButton {
-          border-radius: 0;
+        .titleContent {
+          display: flex;
+          justify-content: center;
           background-color: white;
+
+          .titleButton {
+            border-radius: 0;
+            background-color: white;
+          }
         }
       }
     }
@@ -40,7 +44,6 @@
         align-items: center;
 
         .vocab {
-          font-weight: 600px;
           font-size: 225px;
         }
 

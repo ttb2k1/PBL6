@@ -6,7 +6,7 @@ import { Paper, Grid } from '@mui/material';
 
 
 
-const Table = ({ level, setSelectedKanjiId }) => {
+const Table = ({ level, selectedKanjiId }) => {
 
     const [itemOffset, setItemOffset] = useState(0);
     const [pageCount, setPageCount] = useState(0)
@@ -25,7 +25,7 @@ const Table = ({ level, setSelectedKanjiId }) => {
     };
 
     const handleShow = (id) => {
-        setSelectedKanjiId(id)
+        selectedKanjiId(id)
     }
 
     return (
