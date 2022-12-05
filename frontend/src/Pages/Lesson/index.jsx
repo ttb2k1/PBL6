@@ -23,7 +23,6 @@ const Lesson = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log('123asd123');
   }, [])
 
   const handleChangeLevel = (level) => {

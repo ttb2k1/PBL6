@@ -5,4 +5,53 @@
 }
 
 .slideContainer {
+  margin-top: 90px;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 86%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+
+  .btnUp,
+  .btnDown {
+    display: flex;
+    justify-content: center;
+  }
+
+  .slide {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+      padding: 10px 10px 2px 10px;
+      transition: 2s;
+      position: absolute;
+      margin: auto;
+      z-index: 1;
+
+      &:nth-child(1) {
+        transform: translateY(-200%);
+        opacity: 0;
+      }
+
+      &:nth-child(2) {
+        transform: translateY(0%);
+      }
+
+      &:nth-child(n + 3) {
+        transform: translateY(200%);
+        opacity: 0;
+      }
+
+      .vocab {
+        text-align: center;
+        font-size: 175px;
+      }
+    }
+  }
 }

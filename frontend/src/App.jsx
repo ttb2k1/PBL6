@@ -5,11 +5,13 @@ import Lesson from './Pages/Lesson'
 import Asssessment from './Pages/Assessment';
 import Vocabulary from './Pages/Vocabulary';
 import Header from './Components/Header';
+import Slide from './Components/Slides';
 
 const App = () => {
   return (
     <Router>
       <Header />
+      <Slide />
       <Routes>
         <Route path="/" element={<Learn />} />
         <Route path="/learn" element={<Learn />} />

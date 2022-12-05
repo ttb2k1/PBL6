@@ -21,7 +21,7 @@ export const Header = () => {
                         <Link to="/" className={styles.link}>
                             <img src="../../Image/jlmc-nihon.jpg" alt="" />
                             <div className={styles.title}>
-                                KANJI LEARMING
+                                KANJI LEARNING
                             </div>
                         </Link>
                     </div>

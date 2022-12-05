@@ -12,9 +12,10 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  padding: 90px 5% 0 22%;
 
   .content {
-    width: 70%;
+    width: 100%;
     border-radius: 10px;
 
     .input {
