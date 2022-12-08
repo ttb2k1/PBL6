@@ -18,6 +18,13 @@ const Arrow = styled.div`
   transition: 1s;
 `;
 
+const Wrapper = styled.div`
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Slide = () => {
 
   const [slideIndex, setSlideIndex] = useState(0)
@@ -39,7 +46,7 @@ const Slide = () => {
           <KeyboardArrowUpOutlinedIcon />
         </Arrow>
       </div>
-      <div className={styles.slide}>
+      <Wrapper className={styles.slide}>
         {data.map((item) => (
           <Paper slideIndex={slideIndex} className={styles.content}>
             <div className={styles.vocab}>
@@ -64,7 +71,7 @@ const Slide = () => {
             </div>
           </Paper>
         ))}
-      </div>
+      </Wrapper>
       <div className={styles.btnDown}>
         <Arrow direction="down" onClick={() => handlerClick('down')}>
           <KeyboardArrowDownOutlinedIcon />

@@ -6,13 +6,17 @@
 
 .lessonContainer {
   background-color: #f1f1f1;
+  position: relative;
+  width: 100%;
+  margin: auto;
   padding-top: 90px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  padding: 90px 5% 0 22%;
 
   .contentContainer {
-    width: 70%;
+    width: 100%;
     background-color: #f1f1f1;
     height: 90%;
 
