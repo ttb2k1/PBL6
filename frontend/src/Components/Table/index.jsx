@@ -30,7 +30,6 @@ const Table = ({ level, selectedKanjiId }) => {
 
     return (
         <Grid item xs={8} className={styles.vocabContainer} >
-
             <Paper className={styles.vocabContent} >
                 <div className={styles.Container}>
                     <ul>

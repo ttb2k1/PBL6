@@ -16,8 +16,68 @@
   height: 90%;
 
   .contentContainer {
-    width: 100%;
+    width: 80%;
     height: 90%;
     padding: 25px 25px 20px;
+
+    .evaluate {
+      height: 50%;
+      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+
+      .uploadContainer {
+        width: 50%;
+
+        .uploadImage {
+          margin-bottom: 25px;
+          display: flex;
+
+          .namefile {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 50%;
+          }
+        }
+
+        .uploadKanji {
+          display: flex;
+          align-items: center;
+
+          .inputKanji {
+            border-bottom: 1px solid #333 !important;
+            border: none;
+            margin:0px 10px;
+            outline: none;
+            font-size: 20px;
+            padding-left: 10px;
+            width: 20%;
+          }
+        }
+
+        .percent {
+          margin-top: 20px;
+        }
+      }
+
+      .showKanji {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .detect {
+      height: 50%;
+
+      .titleDetect{
+        margin-bottom: 5px;
+      }
+
+      .kanji{
+        min-width: 10%;
+      }
+    }
   }
 }

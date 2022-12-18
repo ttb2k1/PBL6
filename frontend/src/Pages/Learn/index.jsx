@@ -93,9 +93,6 @@ const Learn = () => {
                         <Grid item xs={2}>
                           {item.compound}:
                         </Grid>
-                        <Grid item xs={3}>
-                          {item.hiragana}
-                        </Grid>
                         <Grid item xs={7}>
                           {item.mean}
                         </Grid>
