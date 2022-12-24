@@ -3,7 +3,7 @@ import styles from './Assessment.module.scss'
 import { Paper, Button, Typography, Grid, Skeleton } from '@mui/material';
 import { useState } from 'react';
 import AssessmentService from '../../service/AssessmentService';
-
+import Resizer from "react-image-file-resizer";
 
 
 const Asssessment = () => {
@@ -11,16 +11,27 @@ const Asssessment = () => {
   const [nameFile, setNameFile] = useState('');
   const [file, setFile] = useState('')
   const [kanji, setKanji] = useState('')
+  const [image, setImage] = useState('')
 
   useEffect(() => {
 
   }, [])
 
-  const handleFileChange = (e) => {
-    let file = e.target.files[0]
-    setNameFile(file.name);
-    setFile(file)
+  
+
+  const handleFileChange = async (e) => {
+    try {
+      let file = e.target.files[0]
+      setImage(image)
+      setNameFile(file.name);
+      setFile(file)
+      console.log(file.name);
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+
 
   const handleChange = (e) => {
     setKanji(e.target.value)
@@ -74,12 +85,12 @@ const Asssessment = () => {
                 onClick={handleSubmit}
               >
                 Gửi
-                {/* {(item.probability * 100 + "").substring(0, (item.probability * 100 + "").indexOf('.') + 3)}% */}
               </Button>
             </div>
             <div className={styles.percent}>Độ chính xác: {(data.correct_ratio * 100 + "").substring(0, (data.correct_ratio * 100 + "").indexOf('.') + 3)}% </div>
           </div>
-          <div className={styles.showKanji}>{data.kanji}</div>
+          {/* <div className={styles.showKanji}>{data.kanji}</div> */}
+          {(file != "") ? <img src={`${image}`} /> : <></>}
         </div>
         <div className={styles.detect}>
           <div className={styles.titleDetect}>5 Từ có tỉ lệ % chính xác nhất:</div>
@@ -87,7 +98,7 @@ const Asssessment = () => {
             {data.top_k?.map((item, index) => (
               <Typography key={index} sx={{ mb: 1, display: 'flex', width: '100%' }}>
                 <Grid className={styles.kanji}>
-                  {item.className}:
+                  {item.kanji}:
                 </Grid>
                 <Grid item xs={7}>
                   {(item.probability * 100 + "").substring(0, (item.probability * 100 + "").indexOf('.') + 3)}%

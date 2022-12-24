@@ -1,11 +1,14 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://52.74.132.234:3000/api/v1/';
-
+const BASE_URL = 'https://nguyencon.site/api/v1/';
 
 class LearnService {
   getVocabByName(name) {
-    return axios.get(BASE_URL + '/search?name=' + name);
+    return axios.get(BASE_URL + 'search?name=' + name);
+  }
+
+  postCanvas(file){
+    return axios.post(BASE_URL + 'detect', file)
   }
 }
 

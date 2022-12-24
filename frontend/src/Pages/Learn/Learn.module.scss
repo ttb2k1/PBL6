@@ -48,6 +48,56 @@
       }
     }
 
+    .canvasContainer {
+      margin-top: 8px;
+      position: absolute;
+      width: 73%;
+      z-index: 2;
+      background-color: black;
+
+      .canvasDraw {
+        width: 100% !important;
+        height: 250px !important;
+        background: none !important;
+      }
+
+      .drawKanjiResult {
+        border-top: 1px solid rgb(204, 204, 204);
+        text-align: left;
+        width: 100%;
+        min-height: 50px;
+        background-color: rgb(253, 253, 253);
+
+        .drawKanjiSuggest {
+          display: inline-block;
+          white-space: nowrap;
+          height: 49px;
+          line-height: 40px;
+          padding: 6px 14px 3px;
+          border-right: 1px solid #ccc;
+          cursor: pointer;
+          font-size: 24px;
+          background-color: #fdfdfd;
+          border-bottom: 1px solid #ccc;
+        }
+      }
+
+      .drawKanjiButton {
+        position: absolute;
+        right: 0;
+        bottom: 18%;
+
+        .btn {
+          color: black;
+          background-color: white;
+          border-radius: 4px;
+          font-size: 11px;
+          border-color: #ccc;
+          margin-right: 1px;
+        }
+      }
+    }
+
     .result {
       display: flex;
       background-color: #f1f1f1;
