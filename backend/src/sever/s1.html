@@ -1,0 +1,120 @@
+<html>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+    
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var xx = "white",
+        yy = 20;
+        var mouse = {x: 0, y: 0};
+	var last_mouse = {x: 0, y: 0};
+
+
+	var myObj = [];
+
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+
+        canvas.addEventListener('mousemove', function(e) {
+		last_mouse.x = mouse.x;
+		last_mouse.y = mouse.y;
+		
+		mouse.x = e.pageX - this.offsetLeft;
+		mouse.y = e.pageY - this.offsetTop;
+	}, false);
+    canvas.addEventListener('mousedown', function(e) {
+		canvas.addEventListener('mousemove', draw, false);
+	}, false);
+	
+	canvas.addEventListener('mouseup', function() {
+		canvas.removeEventListener('mousemove', draw, false);
+        var dataURL = canvas.toDataURL();
+
+        myObj.push(dataURL);
+       
+	}, false);
+       
+    }
+    
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(last_mouse.x, last_mouse.y);
+		ctx.lineTo(mouse.x, mouse.y);
+	    ctx.lineJoin = 'round';
+	    ctx.lineCap = 'round';
+        ctx.strokeStyle = xx;
+        ctx.lineWidth = 10;
+        
+        ctx.stroke();
+        ctx.closePath();
+    }
+    
+    function erase() {
+       
+            ctx.clearRect(0, 0, w, h);
+           
+            myObj=[];
+       
+    }
+    function back(){
+        
+        ctx.clearRect(0, 0, w, h);
+        if (myObj.length>1){
+            
+             var image = new Image();
+             image.onload = function() {
+                 ctx.drawImage(image, 0, 0);
+             };
+         
+            image.src= myObj[myObj.length-2];
+         
+             myObj.pop();
+            }
+    }
+    function dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+    }
+    function save() {
+        document.getElementById("canvasimg").style.border = "2px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+        
+
+        //Usage example:
+        var file = dataURLtoFile(dataURL);
+        
+        axios({
+          method: 'post',
+          url: 'http://52.74.132.234:3000/api/v1/detect',
+          data: {
+            file: file
+            
+          }
+        }).then(response => console.log(response))
+           .catch(error => console.log(error));
+        ;
+    }
+    
+    </script>
+    <body onload="init()">
+        <canvas id="can" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;background-color: black;"></canvas>
+        <img id="canvasimg" style="top:10%;left:52%;" style="display:none;">
+        <input type="button" value="tim" id="btn" size="30" onclick="save()" style="position:absolute;top:80%;left:10%;">
+        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:80%;left:15%;">
+        <input type="button" value="back" id="back" size="23" onclick="back()" style="position:absolute;top:80%;left:20%;">
+    </body>
+    </html>
