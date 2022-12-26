@@ -8,7 +8,6 @@ import LearnService from '../../service/LearnService';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import CanvasDraw from 'react-canvas-draw';
 import { useRef } from 'react';
-import logo from "./Screenshot 2022-12-24 095228.png"
 
 
 const Learn = () => {
@@ -19,6 +18,12 @@ const Learn = () => {
   const [saveData, setSaveData] = useState("")
   const [listKanji, setListKanji] = useState([])
   const canvasRef = useRef(null)
+  const [determine, setDetermine] = useState({
+    x_min: 1000,
+    y_min: 1000,
+    x_max: 0,
+    y_max: 0
+  })
 
   useEffect(() => {
     try {
@@ -49,12 +54,11 @@ const Learn = () => {
     setSaveData("");
   }
 
-  const handleChoose = () => {
+  const handleChoose = (kanji) => {
+    setSearchTerm(kanji)
     setOpen(false)
     setSaveData("")
   }
-
-  const getImg = () => canvasRef.current.canvasContainer.children[1].toDataURL();
 
   const dataURLtoFile = (dataurl, filename) => {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
@@ -65,12 +69,55 @@ const Learn = () => {
     return new File([u8arr], filename, { type: mime });
   }
 
+
+
+  const cropCanvas = (sourceCanvas, left, top, width, height, s1, s2) => {
+    let destCanvas = document.createElement('canvas');
+    destCanvas.width = s1;
+    destCanvas.height = s2;
+    destCanvas.getContext("2d").drawImage(
+      sourceCanvas,
+      left, top, width, height,
+      0, 0, s1, s2);
+    return destCanvas.toDataURL();
+  }
+
+  const handleColectXY = () => {
+    const canvas = canvasRef.current.canvasContainer.children[1]
+    const canvasR = canvasRef.current.getSaveData();
+    const data = JSON.parse(canvasR)
+    data.lines.map((item) => {
+      item.points.filter((point) => {
+        determine.x_min = parseInt(Math.min(point.x, determine.x_min))
+        determine.x_max = parseInt(Math.max(point.x, determine.x_max))
+        determine.y_min = Math.min(point.y, determine.y_min)
+        determine.y_max = Math.max(point.y, determine.y_max)
+      })
+    });
+    let x = determine.x_max - determine.x_min
+    let y = determine.y_max - determine.y_min
+    if (x > 250) {
+      var avg = parseInt((determine.x_max - determine.x_min) / 2) + determine.x_min
+      determine.x_min = avg - 125;
+      determine.x_max = avg + 125;
+    } else {
+      if (x > y) {
+        determine.y_min -= parseInt((x - y) / 2)
+        determine.y_max += parseInt((x - y) / 2)
+      } else {
+        determine.x_min -= parseInt((y - x) / 2)
+        determine.x_max += parseInt((y - x) / 2)
+      }
+    }
+    return cropCanvas(canvas, determine.x_min, determine.y_min, determine.x_max, determine.y_max, determine.x_max - determine.x_min, determine.y_max - determine.y_min)
+  }
+
   const handleCanvasChange = async (e) => {
+    let saveData = handleColectXY();
+    let a = dataURLtoFile(saveData, 'image.png')
+    const formData = new FormData()
+    formData.append('file', a)
     try {
-      const saveData = getImg();
-      let a = dataURLtoFile(saveData, 'image.png')
-      const formData = new FormData()
-      formData.append('file', a)
       await LearnService.postCanvas(formData).then((res) => {
         setListKanji(res.data.top_k)
       })
@@ -82,6 +129,7 @@ const Learn = () => {
 
 
 
+
   return (
     <div className={styles.learnContainer}>
       <div className={styles.content}>
@@ -89,7 +137,12 @@ const Learn = () => {
           <div className={styles.iconSearch} onClick={handleSearch}  >
             <SearchIcon />
           </div>
-          <InputBase className={styles.inputSearch} onKeyDown={handleSearch} onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} placeholder='Tìm kiếm ...' />
+          <InputBase
+            className={styles.inputSearch}
+            onKeyDown={handleSearch}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm} placeholder='Tìm kiếm ...'
+          />
           <div className={styles.iconEdit}>
             <ModeEditOutlineIcon onClick={handleCanvas} />
           </div>
@@ -109,10 +162,11 @@ const Learn = () => {
               onChange={handleCanvasChange}
               hideGrid={true}
               ref={canvasRef}
+
             />
             <div className={styles.drawKanjiResult}>
               {listKanji?.map((item, index) => (
-                <span key={index} className={styles.drawKanjiSuggest} onClick={handleChoose}>{item.kanji}</span>
+                <span key={index} className={styles.drawKanjiSuggest} onClick={() => handleChoose(item.kanji)} value={item.kanji}>{item.kanji}</span>
               ))}
 
             </div>

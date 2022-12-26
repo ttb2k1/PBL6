@@ -1,10 +1,8 @@
 import React from 'react'
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-
 import InputBase from "@mui/material/InputBase";
-
 import SearchIcon from "@mui/icons-material/Search";
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({

@@ -89,7 +89,6 @@ const Asssessment = () => {
             </div>
             <div className={styles.percent}>Độ chính xác: {(data.correct_ratio * 100 + "").substring(0, (data.correct_ratio * 100 + "").indexOf('.') + 3)}% </div>
           </div>
-          {/* <div className={styles.showKanji}>{data.kanji}</div> */}
           {(file != "") ? <img src={`${image}`} /> : <></>}
         </div>
         <div className={styles.detect}>
