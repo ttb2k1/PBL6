@@ -13,19 +13,13 @@ const Asssessment = () => {
   const [kanji, setKanji] = useState('')
   const [image, setImage] = useState('')
 
-  useEffect(() => {
-
-  }, [])
-
-  
-
   const handleFileChange = async (e) => {
     try {
       let file = e.target.files[0]
-      setImage(image)
+      file.preview = URL.createObjectURL(file)
+      setImage(file);
       setNameFile(file.name);
       setFile(file)
-      console.log(file.name);
     } catch (error) {
       console.log(error);
     }
@@ -89,7 +83,7 @@ const Asssessment = () => {
             </div>
             <div className={styles.percent}>Độ chính xác: {(data.correct_ratio * 100 + "").substring(0, (data.correct_ratio * 100 + "").indexOf('.') + 3)}% </div>
           </div>
-          {(file != "") ? <img src={`${image}`} /> : <></>}
+          {(file != "") && <img src={`${image.preview}`} />}
         </div>
         <div className={styles.detect}>
           <div className={styles.titleDetect}>5 Từ có tỉ lệ % chính xác nhất:</div>

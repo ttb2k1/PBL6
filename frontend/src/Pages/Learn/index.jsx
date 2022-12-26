@@ -29,6 +29,8 @@ const Learn = () => {
     try {
       LearnService.getVocabByName(`${result}`).then((res) => {
         setData(res.data)
+        console.log(res.data);
+        console.log(data.compounds);
       })
     } catch (error) {
       console.log(error);
@@ -180,31 +182,80 @@ const Learn = () => {
           <Grid container spacing={2}>
             <Grid item xs={3}>
               <Paper className={styles.item}>
-                <div className={styles.itemContainer}>
-                  <span>{data.kanji}</span>
-                  <span>{data.vocabulary}</span>
-                </div>
+                {data.kanji ? (
+                  <div className={styles.itemContainer}>
+                    <span>{data.kanji}</span>
+                    <span>{data.vocabulary}</span>
+                  </div>
+                ) : (
+                  <Skeleton />
+                )}
+
               </Paper>
             </Grid>
             <Grid item xs={9}>
               <Paper className={styles.item}>
                 <div className={styles.itemContainer}>
                   <Grid item xs={6} className={styles.detail}>
-                    <Typography sx={{ mb: 1 }}>
-                      Bộ: {data.kanji} - {data.vocabulary}
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      訓: {data.kunyomi}
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      音: {data.KEN}
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      Nghĩa: {data.mean}
-                    </Typography>
-                    <Typography sx={{ mb: 1 }}>
-                      Cấp độ: {data.level}
-                    </Typography>
+                    {data.kanji ? (
+                      <>
+                        <Typography sx={{ mb: 1 }}>
+                          Bộ: {data.kanji} - {data.vocabulary}
+                        </Typography>
+                        <Typography sx={{ mb: 1 }}>
+                          訓: {data.onyomi}
+                        </Typography>
+                        <Typography sx={{ mb: 1 }}>
+                          音: {data.kunyomi}
+                        </Typography>
+                        <Typography sx={{ mb: 1 }}>
+                          Nghĩa: {data.mean}
+                        </Typography>
+                        <Typography sx={{ mb: 1 }}>
+                          Cấp độ: {data.level}
+                        </Typography></>
+                    ) : <>
+                      <Typography sx={{ mb: 1, width: '70%', display: 'flex' }} >
+                        <Grid item xs={3} sx={{ mr: 3 }}>
+                          Bộ:
+                        </Grid>
+                        <Grid item xs={9}>
+                          <Skeleton />
+                        </Grid>
+                      </Typography>
+                      <Typography sx={{ mb: 1, width: '70%', display: 'flex' }} >
+                        <Grid item xs={3} sx={{ mr: 3 }}>
+                          訓:
+                        </Grid>
+                        <Grid item xs={9}>
+                          <Skeleton />
+                        </Grid>
+                      </Typography>
+                      <Typography sx={{ mb: 1, width: '70%', display: 'flex' }} >
+                        <Grid item xs={3} sx={{ mr: 3 }}>
+                          音:
+                        </Grid>
+                        <Grid item xs={9}>
+                          <Skeleton />
+                        </Grid>
+                      </Typography>
+                      <Typography sx={{ mb: 1, width: '70%', display: 'flex' }} >
+                        <Grid item xs={3} sx={{ mr: 3 }}>
+                          Nghĩa:
+                        </Grid>
+                        <Grid item xs={9}>
+                          <Skeleton />
+                        </Grid>
+                      </Typography>
+                      <Typography sx={{ mb: 1, width: '70%', display: 'flex' }} >
+                        <Grid item xs={3} sx={{ mr: 3 }}>
+                          Cấp độ:
+                        </Grid>
+                        <Grid item xs={9}>
+                          <Skeleton />
+                        </Grid>
+                      </Typography>
+                    </>}
                   </Grid>
                   <Grid item xs={6} className={styles.canvas} >
                     <span className={styles.vocab}>
@@ -215,16 +266,79 @@ const Learn = () => {
                 <div className={styles.classify}>
                   <div className={styles.classifyTitle}>Ví dụ</div>
                   <Grid item xs={12} >
-                    {data.compounds?.map((item, index) => (
-                      <Typography key={index} sx={{ mb: 1, display: 'flex', width: '100%' }}>
-                        <Grid item xs={1.5}>
-                          {item.compound}:
-                        </Grid>
-                        <Grid item xs={10.5}>
-                          {item.mean}
-                        </Grid>
-                      </Typography>
-                    ))}
+                    {(data.compounds && data.compounds.length > 1) ? (data.compounds.map((item, index) => (
+                      <>
+                        <Typography key={index} sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                          <Grid item xs={1.5} sx={{ mr: 3 }}>
+                            {item.compound}
+                          </Grid>
+                          <Grid item xs={2.5} sx={{ mr: 3 }}>
+                            {item.hiragana}
+                          </Grid>
+                          <Grid item xs={8}>
+                            {item.mean}
+                          </Grid>
+                        </Typography>
+                      </>
+                    ))) :
+                      <>
+                        <Typography sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                          <Grid item xs={1.5} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={2} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={7}>
+                            <Skeleton />
+                          </Grid>
+                        </Typography>
+                        <Typography sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                          <Grid item xs={1.5} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={2} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={7}>
+                            <Skeleton />
+                          </Grid>
+                        </Typography>
+                        <Typography sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                          <Grid item xs={1.5} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={2} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={7}>
+                            <Skeleton />
+                          </Grid>
+                        </Typography>
+                        <Typography sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                          <Grid item xs={1.5} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={2} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={7}>
+                            <Skeleton />
+                          </Grid>
+                        </Typography>
+                        <Typography sx={{ mb: 1, display: 'flex', width: '100%' }}>
+                          <Grid item xs={1.5} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={2} sx={{ mr: 3 }}>
+                            <Skeleton />
+                          </Grid>
+                          <Grid item xs={7}>
+                            <Skeleton />
+                          </Grid>
+                        </Typography>
+                      </>
+                    }
                   </Grid>
                 </div>
               </Paper>
